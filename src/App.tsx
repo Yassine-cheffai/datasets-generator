@@ -1,9 +1,9 @@
-import { Button, Col, DatePicker, Input, Row, Select, Switch, Typography } from 'antd';
+import { Button, Col, DatePicker, Input, Row, Select, Switch, Typography, } from 'antd';
 import React from 'react';
 import './App.css';
 
 
-const { Title } = Typography;
+const { Title, } = Typography;
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 
@@ -13,7 +13,7 @@ const children = [<Option key={"1"} value="1">1</Option>,
 const App = () => {
 
     return (
-      <div style={{ marginTop: "100px"}}>
+      <div>
         <Row>
             <Col span={8} offset={8}>
                 <Title level={3} style={{ marginTop: "20px", marginBottom: "100px", textAlign: "center"}}>Twitter DataSets Builder</Title>
@@ -62,6 +62,13 @@ const App = () => {
               </Button>
             </Col>
         </Row>
+        <div>
+          <Title code style={{ position:"absolute", 
+                               bottom:"0",
+                               width:"100%",
+                               textAlign: "center",
+                               fontSize: "14px"}}>Developed by <a href="https://yassine-cheffai.github.io/" target="_blank">Yassine Cheffai</a></Title>
+        </div>
       </div>
 
     );
