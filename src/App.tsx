@@ -5,7 +5,6 @@ import './App.css';
 
 const { Title, Link} = Typography;
 const { Option } = Select;
-const { RangePicker } = DatePicker;
 
 const children = [<Option key={"1"} value="1">1</Option>,
 <Option key={"2"} value="2">2</Option>,];
@@ -24,7 +23,11 @@ const App = () => {
       <div>
         <Row>
             <Col span={8} offset={8}>
-                <Title level={3} style={{ marginTop: "20px", marginBottom: "80px", textAlign: "center"}}>Twitter DataSets Builder</Title>
+                <Title level={3} style={{ marginTop: "20px",
+                                          marginBottom: "80px",
+                                          textAlign: "center"}}>
+                                          Twitter DataSets Builder
+                </Title>
             </Col>
         </Row>
         <Row>
@@ -45,7 +48,7 @@ const App = () => {
         </Row>
         <Row>
             <Col span={8} offset={8} style={{ padding: '8px 0' }}>
-                <RangePicker style={{ width: '100%' }}/>
+                <DatePicker style={{ width: '100%' }} placeholder="since"/>
             </Col>
         </Row>
         <Row>
