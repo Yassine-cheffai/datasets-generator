@@ -1,4 +1,4 @@
-import { Button, Col, DatePicker, Input, Row, Select, Switch, Typography, } from 'antd';
+import { Button, Col, DatePicker, Input, Row, Select, Switch, Typography, notification } from 'antd';
 import React from 'react';
 import './App.css';
 
@@ -11,12 +11,20 @@ const children = [<Option key={"1"} value="1">1</Option>,
 <Option key={"2"} value="2">2</Option>,];
 
 const App = () => {
+    
+    notification.open({
+    message: 'What is twitter datasets builder ?',
+    description:
+      'Twitter datasets builder is a tool for extracting tweets data from twitter, this tool is designed mainly to help data scientists who are working on NLP and NLU',
+    duration: 0,
+    placement: 'bottomRight',
+    });
 
     return (
       <div>
         <Row>
             <Col span={8} offset={8}>
-                <Title level={3} style={{ marginTop: "20px", marginBottom: "100px", textAlign: "center"}}>Twitter DataSets Builder</Title>
+                <Title level={3} style={{ marginTop: "20px", marginBottom: "80px", textAlign: "center"}}>Twitter DataSets Builder</Title>
             </Col>
         </Row>
         <Row>
@@ -37,7 +45,7 @@ const App = () => {
         </Row>
         <Row>
             <Col span={8} offset={8} style={{ padding: '8px 0' }}>
-                <RangePicker />
+                <RangePicker style={{ width: '100%' }}/>
             </Col>
         </Row>
         <Row>
