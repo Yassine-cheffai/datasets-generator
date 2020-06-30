@@ -25,7 +25,7 @@ const App = () => {
             <Col span={8} offset={8}>
                 <Title level={3} style={{ marginTop: "20px",
                                           marginBottom: "80px",
-                                          textAlign: "center"}}>
+                                          textAlign: "center" }}>
                                           Twitter DataSets Builder
                 </Title>
             </Col>
