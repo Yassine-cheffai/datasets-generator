@@ -3,7 +3,7 @@ import React from 'react';
 import './App.css';
 
 
-const { Title, } = Typography;
+const { Title, Link} = Typography;
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 
@@ -67,7 +67,12 @@ const App = () => {
                                bottom:"0",
                                width:"100%",
                                textAlign: "center",
-                               fontSize: "14px"}}>Developed by <a href="https://yassine-cheffai.github.io/" target="_blank">Yassine Cheffai</a></Title>
+                               fontSize: "14px"}}>
+                               Developed by&nbsp;
+                                 <Link href="https://yassine-cheffai.github.io/" target="_blank">
+                                   Yassine Cheffai
+                                 </Link>
+          </Title>
         </div>
       </div>
 
