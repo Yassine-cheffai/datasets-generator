@@ -18,7 +18,6 @@ const App = () => {
     const [retweets, setRetweets] = useState(false);
     const [removeUrls, setremoveUrls] = useState(false);
     const [notify, ] = useState(true)
-    console.log(keywords, fields, since, semantic, retweets, removeUrls);
 
     useEffect(() => {
         notification.open({
@@ -31,6 +30,10 @@ const App = () => {
       }, [notify]
 
     )
+
+    const submit = () => {
+      console.log(keywords, fields, since, semantic, retweets, removeUrls);
+    }
 
     return (
       <div>
@@ -84,7 +87,9 @@ const App = () => {
         </Row>
         <Row>
             <Col span={4} offset={12} style={{ padding: '8px 0' }}>
-              <Button type="primary" htmlType="submit">
+              <Button type="primary"
+                      htmlType="submit"
+                      onClick={ submit }>
                       Submit
               </Button>
             </Col>
