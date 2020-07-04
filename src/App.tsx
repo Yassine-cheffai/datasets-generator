@@ -1,5 +1,5 @@
 import { Button, Col, DatePicker, Input, Row, Select, Switch, Typography, notification } from 'antd';
-import React from 'react';
+import React , { useState, useEffect } from 'react';
 import './App.css';
 
 
@@ -7,17 +7,30 @@ const { Title, Link} = Typography;
 const { Option } = Select;
 
 const children = [<Option key={"1"} value="1">1</Option>,
-<Option key={"2"} value="2">2</Option>,];
+                  <Option key={"2"} value="2">2</Option>,];
 
 const App = () => {
-    
-    notification.open({
-    message: 'What is twitter datasets builder ?',
-    description:
-      'Twitter datasets builder is a tool for extracting tweets data from twitter, this tool is designed mainly to help data scientists who are working on NLP and NLU',
-    duration: 0,
-    placement: 'bottomRight',
-    });
+
+    const [keywords, setKeywords] = useState("");
+    const [fields, setFields] = useState(['a10', 'c12']) // same default as the input
+    const [since, setSince] = useState("");
+    const [semantic, setSemantic] = useState(false);
+    const [retweets, setRetweets] = useState(false);
+    const [removeUrls, setremoveUrls] = useState(false);
+    const [notify, ] = useState(true)
+    console.log(keywords, fields, since, semantic, retweets, removeUrls);
+
+    useEffect(() => {
+        notification.open({
+        message: 'What is twitter datasets builder ?',
+        description:
+          'Twitter datasets builder is a tool for extracting tweets data from twitter, this tool is designed mainly to help data scientists who are working on NLP and NLU',
+        duration: 0,
+        placement: 'bottomRight',
+        });
+      }, [notify]
+
+    )
 
     return (
       <div>
@@ -32,7 +45,7 @@ const App = () => {
         </Row>
         <Row>
             <Col span={8} offset={8} style={{ padding: '8px 0' }}>
-                <Input placeholder="Keywords" />
+                <Input placeholder="Keywords" onChange={ event => setKeywords(event.target.value) }/>
             </Col>
         </Row>
         <Row>
@@ -41,29 +54,32 @@ const App = () => {
                     mode="multiple"
                     style={{ width: '100%' }}
                     placeholder="Please select fields"
-                    defaultValue={['a10', 'c12']}>
+                    defaultValue={['a10', 'c12']}
+                    onChange={event => setFields(event)}>
                     {children}
                 </Select>
             </Col>
         </Row>
         <Row>
             <Col span={8} offset={8} style={{ padding: '8px 0' }}>
-                <DatePicker style={{ width: '100%' }} placeholder="since"/>
+                <DatePicker style={{ width: '100%' }}
+                            placeholder="since"
+                            onChange={ date => date ? setSince(date.format("DD-MM-YYYY")) : "" } />
             </Col>
         </Row>
         <Row>
             <Col span={8} offset={8} style={{ padding: '8px 0' }}>
-                <Switch /> Add semantic analyse
+                <Switch onChange={ event => setSemantic(event) } /> Add semantic analyse
             </Col>
         </Row>
         <Row>
             <Col span={8} offset={8} style={{ padding: '8px 0' }}>
-                <Switch /> Retweets
+                <Switch onChange={ event => setRetweets(event) } /> Retweets
             </Col>
         </Row>
         <Row>
             <Col span={8} offset={8} style={{ padding: '8px 0' }}>
-                <Switch /> Remove urls
+                <Switch onChange={event => setremoveUrls(event)} /> Remove urls
             </Col>
         </Row>
         <Row>
