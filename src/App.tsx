@@ -6,15 +6,19 @@ import './App.css';
 const { Title, Link} = Typography;
 const { Option } = Select;
 
-const children = [<Option key={"1"} value="1">1</Option>,
-                  <Option key={"2"} value="2">2</Option>,];
+// lang, created_at, author.screen_name, text, retweet_count
+const children = [<Option key={"lang"} value="lang">lang</Option>,
+                  <Option key={"created_at"} value="created_at">created_at</Option>,
+                  <Option key={"author"} value="author">author</Option>,
+                  <Option key={"text"} value="text">text</Option>,
+                  <Option key={"retweet_count"} value="retweet_count">retweet_count</Option>,];
 
 const App = () => {
 
     const [keywords, setKeywords] = useState("");
-    const [fields, setFields] = useState(['a10', 'c12']) // same default as the input
+    const [fields, setFields] = useState(['text',]) // same default as the input => lang, created_at, author.screen_name, text, retweet_count
     const [since, setSince] = useState("");
-    const [semantic, setSemantic] = useState(false);
+    const [polarity, setpolarity] = useState(false);
     const [retweets, setRetweets] = useState(false);
     const [removeUrls, setremoveUrls] = useState(false);
     const [notify, ] = useState(true)
@@ -32,7 +36,7 @@ const App = () => {
     )
 
     const submit = () => {
-      console.log(keywords, fields, since, semantic, retweets, removeUrls);
+      console.log(keywords, fields, since, polarity, retweets, removeUrls);
     }
 
     return (
@@ -57,7 +61,7 @@ const App = () => {
                     mode="multiple"
                     style={{ width: '100%' }}
                     placeholder="Please select fields"
-                    defaultValue={['a10', 'c12']}
+                    defaultValue={['text']}
                     onChange={event => setFields(event)}>
                     {children}
                 </Select>
@@ -67,12 +71,12 @@ const App = () => {
             <Col span={8} offset={8} style={{ padding: '8px 0' }}>
                 <DatePicker style={{ width: '100%' }}
                             placeholder="since"
-                            onChange={ date => date ? setSince(date.format("DD-MM-YYYY")) : "" } />
+                            onChange={ date => date ? setSince(date.format("YYYY-MM-DD")) : "" } />
             </Col>
         </Row>
         <Row>
             <Col span={8} offset={8} style={{ padding: '8px 0' }}>
-                <Switch onChange={ event => setSemantic(event) } /> Add semantic analyse
+                <Switch onChange={ event => setpolarity(event) } /> Add polarity analyse
             </Col>
         </Row>
         <Row>
