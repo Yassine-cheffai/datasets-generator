@@ -1,10 +1,10 @@
-import { Button, Col, DatePicker, Input, Row, Select, Switch, Typography, notification, } from 'antd';
-import { DownloadOutlined } from '@ant-design/icons';
+import { Button, Col, DatePicker, Input, Row, Select, Switch, Typography, notification, Alert, Popover } from 'antd';
+import { DownloadOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import React, { useState, useEffect } from 'react';
 import { CSVLink } from "react-csv";
 import axios from 'axios';
 import './App.css';
-
+import moment from 'moment';
 
 const { Title, Link } = Typography;
 const { Option } = Select;
@@ -28,6 +28,13 @@ const App = () => {
   const [isLoading, setisLoading] = useState(false);
   const [isReady, setisReady] = useState(false);
   const [csvData, setcsvData] = useState([]);
+  const [displayError, setdisplayError] = useState(false)
+
+  const popoverContent = <p>
+    <b>Sentiment analysis</b> is a method of identifying attitudes in text data about a subject of interest. It is scored using <b>polarity</b> values that range from 1 to -1. 
+    <br/>
+    Values closer to 1 indicate more positivity, while values closer to -1 indicate more negativity
+  </p> 
 
   useEffect(() => {
     notification.open({
@@ -42,6 +49,16 @@ const App = () => {
 
   const submit = () => {
     console.log(keywords, fields, since, polarity, retweets, removeUrls);
+    console.log(since)
+    if (keywords === "" || 
+        fields.length === 0 ||
+        since === "" ||
+        since > moment().format("YYYY-MM-DD")
+      ){
+      console.log("invalid inputs");
+      setdisplayError(true);
+      return
+    }
     setisLoading(true)
     axios.post(`http://127.0.0.1:8000/`, {
       keywords: keywords,
@@ -70,9 +87,22 @@ const App = () => {
             textAlign: "center"
           }}>
             Twitter DataSets Builder
-                </Title>
+          </Title>
         </Col>
       </Row>
+      {displayError?
+        <Row>
+          <Col span={8} offset={8}>
+            <Alert
+              message="Please verify your inputs"
+              type="error"
+              closable
+              onClose={(event) => (setdisplayError(false))}/>
+          </Col>
+        </Row>
+        :
+        ""
+      }
       <Row>
         <Col span={8} offset={8} style={{ padding: '8px 0' }}>
           <Input placeholder="Keywords" onChange={event => setKeywords(event.target.value)} />
@@ -99,8 +129,11 @@ const App = () => {
       </Row>
       <Row>
         <Col span={8} offset={8} style={{ padding: '8px 0' }}>
-          <Switch onChange={event => setpolarity(event)} /> Add polarity analyse
-            </Col>
+          <Switch onChange={event => setpolarity(event)} /> Add Sentiment analysis  
+          <Popover content={popoverContent} trigger="click">
+            <InfoCircleOutlined style={{ marginLeft: "5px" }}/>
+          </Popover>
+        </Col>
       </Row>
       <Row>
         <Col span={8} offset={8} style={{ padding: '8px 0' }}>
@@ -145,9 +178,9 @@ const App = () => {
           fontSize: "14px"
         }}>
           Developed by&nbsp;
-                                 <Link href="https://yassine-cheffai.github.io/" target="_blank">
+         <Link href="https://yassine-cheffai.github.io/" target="_blank">
             Yassine Cheffai
-                                 </Link>
+         </Link>
         </Title>
       </div>
     </div>
