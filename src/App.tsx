@@ -60,7 +60,7 @@ const App = () => {
       return
     }
     setisLoading(true)
-    axios.post(`http://127.0.0.1:8000/`, {
+    axios.post(`https://twitter-data-set-builder-api.herokuapp.com/`, {
       keywords: keywords,
       csv_fields: fields,
       since: since,
