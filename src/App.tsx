@@ -29,6 +29,7 @@ const App = () => {
   const [isReady, setisReady] = useState(false);
   const [csvData, setcsvData] = useState([]);
   const [displayError, setdisplayError] = useState(false)
+  const [errorMessage, seterrorMessage] = useState("")
 
   const popoverContent = <p>
     <b>Sentiment analysis</b> is a method of identifying attitudes in text data about a subject of interest. It is scored using <b>polarity</b> values that range from 1 to -1. 
@@ -48,14 +49,12 @@ const App = () => {
   );
 
   const submit = () => {
-    console.log(keywords, fields, since, polarity, retweets, removeUrls);
-    console.log(since)
     if (keywords === "" || 
         fields.length === 0 ||
         since === "" ||
         since > moment().format("YYYY-MM-DD")
       ){
-      console.log("invalid inputs");
+      seterrorMessage("Please verify your inputs");
       setdisplayError(true);
       return
     }
@@ -69,11 +68,14 @@ const App = () => {
       remove_urls: removeUrls
     })
       .then(res => {
-        console.log(res);
-        console.log(res.data);
         setcsvData(res.data.result);
         setisLoading(false);
         setisReady(true);
+      })
+      .catch(error => {
+        seterrorMessage("Oooups something went wrong");
+        setdisplayError(true);
+        setisLoading(false);
       })
   };
 
@@ -94,7 +96,7 @@ const App = () => {
         <Row>
           <Col span={8} offset={8}>
             <Alert
-              message="Please verify your inputs"
+              message={errorMessage}
               type="error"
               closable
               onClose={(event) => (setdisplayError(false))}/>
