@@ -1,10 +1,9 @@
-import { Button, Col, DatePicker, Input, Row, Select, Switch, Typography, notification, Alert, Popover } from 'antd';
+import { Button, Col,  Input, Row, Select, Switch, Typography, notification, Alert, Popover } from 'antd';
 import { DownloadOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import React, { useState, useEffect } from 'react';
 import { CSVLink } from "react-csv";
 import axios from 'axios';
 import './App.css';
-import moment from 'moment';
 
 const { Title, Link } = Typography;
 const { Option } = Select;
@@ -20,7 +19,6 @@ const App = () => {
 
   const [keywords, setKeywords] = useState("");
   const [fields, setFields] = useState(['text',]) // same default as the input => lang, created_at, author.screen_name, text, retweet_count
-  const [since, setSince] = useState("");
   const [polarity, setpolarity] = useState(false);
   const [retweets, setRetweets] = useState(false);
   const [removeUrls, setremoveUrls] = useState(false);
@@ -49,20 +47,18 @@ const App = () => {
   );
 
   const submit = () => {
+    console.log(process.env.BACKEND)
     if (keywords === "" || 
-        fields.length === 0 ||
-        since === "" ||
-        since > moment().format("YYYY-MM-DD")
+        fields.length === 0 
       ){
       seterrorMessage("Please verify your inputs");
       setdisplayError(true);
       return
     }
     setisLoading(true)
-    axios.post(`https://twitter-data-set-builder-api.herokuapp.com/`, {
+    axios.post(process.env.BACKEND ? process.env.BACKEND : "127.0.0.1:8000", {
       keywords: keywords,
       csv_fields: fields,
-      since: since,
       polarity: polarity,
       retweets: retweets,
       remove_urls: removeUrls
@@ -120,13 +116,6 @@ const App = () => {
             onChange={event => setFields(event)}>
             {children}
           </Select>
-        </Col>
-      </Row>
-      <Row>
-        <Col span={8} offset={8} style={{ padding: '8px 0' }}>
-          <DatePicker style={{ width: '100%' }}
-            placeholder="since"
-            onChange={date => date ? setSince(date.format("YYYY-MM-DD")) : ""} />
         </Col>
       </Row>
       <Row>
