@@ -47,16 +47,16 @@ const App = () => {
   );
 
   const submit = () => {
-    console.log(process.env.BACKEND)
-    if (keywords === "" || 
-        fields.length === 0 
+    console.log(process.env.REACT_APP_BACKEND)
+    if (keywords === "" ||
+        fields.length === 0
       ){
       seterrorMessage("Please verify your inputs");
       setdisplayError(true);
       return
     }
     setisLoading(true)
-    axios.post(process.env.BACKEND ? process.env.BACKEND : "127.0.0.1:8000", {
+      axios.post(process.env.REACT_APP_BACKEND ? process.env.REACT_APP_BACKEND : "127.0.0.1:8000", {
       keywords: keywords,
       csv_fields: fields,
       polarity: polarity,
