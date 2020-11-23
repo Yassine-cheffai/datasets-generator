@@ -35,7 +35,7 @@ export const Twitter = () => {
             return
         }
         setisLoading(true)
-        axios.post(process.env.REACT_APP_BACKEND ? process.env.REACT_APP_BACKEND : "http://127.0.0.1:8000", {
+        axios.post((process.env.REACT_APP_BACKEND ? process.env.REACT_APP_BACKEND : "http://127.0.0.1:8000") + "twitter/", {
             keywords: keywords,
             csv_fields: fields,
             polarity: polarity,
