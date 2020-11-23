@@ -7,11 +7,11 @@ import axios from 'axios';
 const { Option } = Select;
 
 // lang, created_at, author.screen_name, text, retweet_count
-const children = [<Option key={"lang"} value="lang">lang</Option>,
-<Option key={"created_at"} value="created_at">created_at</Option>,
-<Option key={"author"} value="author">author</Option>,
-<Option key={"text"} value="text">text</Option>,
-<Option key={"retweet_count"} value="retweet_count">retweet_count</Option>,];
+const children = [<Option key={"lang"} value="lang">Language</Option>,
+<Option key={"created_at"} value="created_at">Creation time</Option>,
+<Option key={"author"} value="author">Author</Option>,
+<Option key={"text"} value="text">Content</Option>,
+<Option key={"retweet_count"} value="retweet_count">Retweet count</Option>,];
 
 
 export const Twitter = () => {
@@ -76,12 +76,12 @@ export const Twitter = () => {
                 ""
             }
             <Row>
-                <Col style={{ padding: '8px 0' }}>
+                <Col style={{ padding: '8px 0', width: "100%" }}>
                     <Input placeholder="Keywords" onChange={event => setKeywords(event.target.value)} />
                 </Col>
             </Row>
             <Row>
-                <Col style={{ padding: '8px 0' }}>
+                <Col style={{ padding: '8px 0', width: "100%" }}>
                     <Select
                         mode="multiple"
                         style={{ width: '100%' }}

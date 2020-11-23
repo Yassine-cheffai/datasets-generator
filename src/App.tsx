@@ -21,7 +21,7 @@ const App = () => {
     );
     return (
         <div>
-            <div style={{ margin: "100px" }}>
+            <div style={{ margin: "100px", width: "50%" }}>
                 <Tabs type="card">
                     <TabPane tab="Twitter" key="1">
                         <Twitter />
