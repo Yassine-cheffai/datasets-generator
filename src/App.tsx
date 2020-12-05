@@ -12,9 +12,9 @@ const App = () => {
     const [notify,] = useState(true);
     useEffect(() => {
         notification.open({
-            message: 'What is twitter datasets builder ?',
+            message: 'What is Datasets Generator ?',
             description:
-                'Twitter datasets builder is a tool for extracting tweets data from twitter, this tool is designed mainly to help data scientists who are working on NLP and NLU',
+                'Datasets Generator is a tool for extracting tweets data from twitter, this tool is designed mainly to help data scientists who are working on NLP and NLU',
             duration: 0,
             placement: 'bottomRight',
         });
