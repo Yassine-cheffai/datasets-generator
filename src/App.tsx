@@ -14,7 +14,7 @@ const App = () => {
         notification.open({
             message: 'What is Datasets Generator ?',
             description:
-                'Datasets Generator is a tool for extracting tweets data from twitter, this tool is designed mainly to help data scientists who are working on NLP and NLU',
+                'Datasets Generator is a tool for extracting informations from different social media platfroms, this tool is designed mainly to help data scientists who are working on NLP and NLU',
             duration: 0,
             placement: 'bottomRight',
         });
