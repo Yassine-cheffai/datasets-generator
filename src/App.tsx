@@ -1,6 +1,7 @@
 import { Typography, Tabs, notification } from 'antd';
 import React, { useState, useEffect } from 'react';
-import { Twitter } from "./twitter";
+import { Twitter } from './twitter';
+import { Reddit } from './reddit';
 import './App.css';
 
 const { Title, Link } = Typography;
@@ -27,7 +28,7 @@ const App = () => {
                         <Twitter />
                     </TabPane>
                     <TabPane tab="Reddit" key="2">
-                        Content of Tab Pane 2
+                        <Reddit />
               </TabPane>
                     <TabPane tab="Quora" key="3">
                         Content of Tab Pane 3
