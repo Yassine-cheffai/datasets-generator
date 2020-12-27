@@ -34,6 +34,7 @@ export const Reddit = () => {
                  setisLoading(false);
              })
              .catch(error => {
+                 console.log(error);
                  setisLoading(false);
              })
     }
